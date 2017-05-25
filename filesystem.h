@@ -52,7 +52,7 @@ class FileSystem {
 
  public:
     // constructor
-    FileSystem(string title, int diskSize, bool alreadyExists);
+    FileSystem(string title);
 
     enum Status {FREE = 0, BUSY, RESERVED, NOT_FOUND, DIR_ENTRY, DELETED, END};
     const vector<string> statusMsg {

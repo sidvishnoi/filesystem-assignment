@@ -1,12 +1,29 @@
 #include "../filesystem.h"
 
 // constructor
-FileSystem::FileSystem(
-    string title = "Disk.bin", // default title for disk
-        int diskSize = 1024*1024, // 1Mib = 1024*1024 bytes (default)
-        bool alreadyExists = false) :
-        diskTitle_k(title),
-        diskSize_k(diskSize) {
+FileSystem::FileSystem(string title = "Disk.bin")
+        : diskTitle_k(title) {
+
+    // check if disk doesn't exists or is empty
+    //  and if exists, get it's size in bytes
+
+    /* %%
+    >> write a code to check whether the disk already exists or not by checking it's size (store size in diskSizeBytes)
+    and update the boolean variable
+        alreadyExists = true, if file with same name exists
+        else false
+    */
+    // %% logic here
+    bool alreadyExists; // %%;
+
+    // get size if not exists
+    if (!alreadyExists) {
+        int diskSizeMB;
+        cout << "Enter disk size in MiB : ";
+        cin >> diskSizeMB;
+        cin.ignore(32767, '\n');
+        diskSize_k = 1024*1024*diskSizeMB;
+    }
 
     /* %%
     how many sectors of each size sectorSize_k exist, if total disk size = diskSize_k
