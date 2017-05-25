@@ -5,6 +5,9 @@ void FileSystem::createDisk()
     /*
     objective: reserves disk space by writing numberOfSectors_k sectors of size sectorSize_k each
     */
+    ofstream fp;
+    fp.open(diskTitle_k, ios::binary | ios::out);
+    fp.close();
     char buffer[sectorSize_k];
 
     // create a buffer of size sectorSize_k
