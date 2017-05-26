@@ -14,7 +14,7 @@ vector<int> FileSystem::getEntryPosition(char *title, char type) {
     TypeCastEntry cast;
 
     // start looking from first non-reserved sector
-    int current = numberOfSectors_k;
+    int current = reservedSectors_k;
     for (int s = 0; s < sectorsForDir_k; ++s) {
         readSector(current, buffer);
         for (int b = 0; b < sectorSize_k; b += 32) {
