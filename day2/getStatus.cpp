@@ -10,15 +10,15 @@ int FileSystem::getStatus(int sector_no) {
     */
 
     if (sector_no > numberOfSectors_k - 1) {
-      	cout << "ERROR: Sector does not exist." << endl;
-		return NOT_FOUND;
+        cout << "ERROR: Sector does not exist." << endl;
+        return NOT_FOUND;
     }
-  	if (sector_no < reservedSectors_k) {
-      	cout << "ERROR: Sector is reserved." << endl;
-    	return RESERVED;
+      if (sector_no < reservedSectors_k) {
+        cout << "ERROR: Sector is reserved." << endl;
+        return RESERVED;
     }
 
-  	// cast will convert a char[4] array to an int, using type-punning
+    // cast will convert a char[4] array to an int, using type-punning
     TypeCastInt cast;
 
     /* %%
@@ -28,7 +28,7 @@ int FileSystem::getStatus(int sector_no) {
     (hint: same as in setStatus())
     */
     int sectorOffset, byteOffset;
-  	// compute here
+    // compute here
 
     char buffer[sectorSize_k];
     readSector(sectorOffset, buffer);

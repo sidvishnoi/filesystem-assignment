@@ -13,15 +13,15 @@ int FileSystem::setStatus(int sector_no, int x) {
     */
 
     if (sector_no > numberOfSectors_k - 1) {
-      	cout << "ERROR: Sector does not exist." << endl;
-		return -1;
+        cout << "ERROR: Sector does not exist." << endl;
+        return -1;
     }
-  	if (sector_no < reservedSectors_k) {
-      	cout << "ERROR: Sector is reserved." << endl;
-    	return -1;
+    if (sector_no < reservedSectors_k) {
+        cout << "ERROR: Sector is reserved." << endl;
+        return -1;
     }
 
-  	// cast will convert an int <x> to a char[4] array, using type-punning
+    // cast will convert an int <x> to a char[4] array, using type-punning
     TypeCastInt cast;
     cast.num = x;
 
@@ -31,7 +31,7 @@ int FileSystem::setStatus(int sector_no, int x) {
     >> also, compute a <byteOffset> which shows starting from which byte in <sectorOffset>, next 4 bytes need to be updated
     */
     int sectorOffset, byteOffset;
-  	// compute here
+    // compute here
 
     char buffer[sectorSize_k];
     readSector(sectorOffset, buffer);
