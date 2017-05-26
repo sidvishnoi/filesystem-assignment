@@ -22,7 +22,7 @@ typedef struct {
 typedef struct {
     int  startsAt;
     int  size;
-    char type;    // y/n
+    char type;    // f/d/F/D
     int  parent;
     char name[19];
 } dirEntry;
@@ -46,9 +46,16 @@ class FileSystem {
     int diskSize_k;
     int reservedSectors_k;
     int numberOfSectors_k;
+    const int sectorsForDir_k = 2;
 
     // reserves space for disk, called by constructor
     void createDisk();
+
+    // returns a list of available sectors
+    vector<int> findEmptySectors(int requiredNumber);
+
+    // returns the offsets for a directory/file entry
+    vector<int> getEntryPosition(char * title, char type);
 
  public:
     // constructor

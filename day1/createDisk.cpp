@@ -22,4 +22,11 @@ void FileSystem::createDisk()
         writeSector(i, buffer);
     }
 
+    // reserve space for root directory
+    for (int i = numberOfSectors_k; i < numberOfSectors_k + sectorsForDir_k; ++i)
+    {
+        int s = (i == numberOfSectors_k - 1) ? 1 : i+1;
+        setStatus(i, s);
+    }
+
 }
