@@ -55,7 +55,7 @@ class FileSystem {
     vector<int> findEmptySectors(int requiredNumber);
 
     // check whether entry with same name and exists in current dir
-    bool alreadyExists(char *name, char type);
+    vector<int> alreadyExists(char *name, char type);
 
     // return the offsets for free position for file/directory entry
     vector<int> getEntryPosition();
