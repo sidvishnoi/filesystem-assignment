@@ -38,7 +38,7 @@ vector<int> FileSystem::getEntryPosition(char *title, char type) {
                 byteFree = b;
                 freeFound = true;
             }
-            if (strcmp(cast.entry.name, title) == 0 && cast.entry.type == type) {
+            if (strcmp(cast.entry.name, title) == 0 && (cast.entry.type == type || cast.entry.type == '\0')) {
                 // found position
                 vector<int> offsets = {current, b, 1};
                 return offsets;
