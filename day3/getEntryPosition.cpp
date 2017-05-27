@@ -9,7 +9,18 @@ vector<int> FileSystem::getEntryPosition(char *title, char type) {
     return:
         vector (sectorOffset, byteOffset, alreadyExists(1: true))
     */
+    /*
+    example usage:
+    getEntryPosition("somefile", 'f'):
+        if exists already: return (current, b, true)
+        else: return (sectorFree, byteFree, false)
+    getEntryPosition('\0', 'f'):
+        if exists (enough space): return (current, b, true)
+        else: (not enough space): return (-1, -1, false)
+    */
     int sectorOffset, byteOffset, alreadyExists;
+    int sectorFree = -1, byteFree = -1;
+    bool freeFound = false;
     char buffer[sectorSize_k];
     TypeCastEntry cast;
 
@@ -21,6 +32,12 @@ vector<int> FileSystem::getEntryPosition(char *title, char type) {
             for (int k = 0; k < 32; ++k) {
                 cast.str[k] = buffer[b+k];
             }
+            if (!freeFound && strlen(cast.entry.name) == 0) {
+                // used to return the offsets for free entry position
+                sectorFree = current;
+                byteFree = b;
+                freeFound = true;
+            }
             if (strcmp(cast.entry.name, title) == 0 && cast.entry.type == type) {
                 // found position
                 vector<int> offsets = {current, b, 1};
@@ -31,6 +48,6 @@ vector<int> FileSystem::getEntryPosition(char *title, char type) {
         current = getStatus(current);
     }
     // no such entry found
-    vector<int> offsets = {-1, -1, 0};
+    vector<int> offsets = {sectorFree, byteFree, 0};
     return offsets;
 }
