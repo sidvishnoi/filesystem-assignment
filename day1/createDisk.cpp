@@ -25,7 +25,7 @@ void FileSystem::createDisk()
     // reserve space for root directory
     for (int i = numberOfSectors_k; i < numberOfSectors_k + sectorsForDir_k; ++i)
     {
-        int s = (i == numberOfSectors_k - 1) ? 1 : i+1;
+        int s = (i == sectorsForDir_k - 1) ? 1 : i+1;
         setStatus(i, s);
     }
 
