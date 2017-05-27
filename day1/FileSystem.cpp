@@ -8,7 +8,7 @@ FileSystem::FileSystem(string title)
     //  and if exists, get it's size in bytes
 
     /* %%
-    >> write a code to check whether the disk already exists or not by checking it's size (store size in diskSizeBytes)
+    >> write a code to check whether the disk already exists or not by checking it's size (store size in diskSize_k)
     and update the boolean variable
         alreadyExists = true, if file with same name exists
         else false

@@ -10,10 +10,13 @@ void FileSystem::createDisk()
     fp.close();
     char buffer[sectorSize_k];
 
+    TypeCastInt cast;
+    cast.num = 0;
+
     // create a buffer of size sectorSize_k
     for (int i = 0; i < sectorSize_k; ++i)
     {
-        buffer[i] = '0';
+        buffer[i] = cast.str[i % 4];
     }
 
     // reserve disk space by writing numberOfSectors_k sectors
