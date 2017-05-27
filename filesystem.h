@@ -54,8 +54,14 @@ class FileSystem {
     // returns a list of available sectors
     vector<int> findEmptySectors(int requiredNumber);
 
-    // returns the offsets for a directory/file entry
-    vector<int> getEntryPosition(char * title, char type);
+    // check whether entry with same name and exists in current dir
+    bool alreadyExists(char *name, char type);
+
+    // return the offsets for free position for file/directory entry
+    vector<int> getEntryPosition();
+
+    // write a file/dir entry to Disk
+    void writeEntry(vector<int> offset, const char * buffer);
 
  public:
     // constructor

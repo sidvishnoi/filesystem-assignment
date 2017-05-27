@@ -1,30 +1,19 @@
 #include "../filesystem.h"
 
-vector<int> FileSystem::getEntryPosition(char *title, char type) {
+vector<int> FileSystem::getEntryPosition() {
     /*
-    Objective: return the offsets for a directory/file entry based on title and type
+    Objective: return the offsets for free position for file/directory entry
     Input Parameters:
-        title: title for entry (if empty, looks for available location)
-        type: type of entry (f: file, d: directory)
+        None
     return:
-        vector (sectorOffset, byteOffset, alreadyExists(1: true))
+        vector [sectorOffset, byteOffset] if space available
+            else: [-1, -1]
     */
-    /*
-    example usage:
-    getEntryPosition("somefile", 'f'):
-        if exists already: return (current, b, true)
-        else: return (sectorFree, byteFree, false)
-    getEntryPosition('\0', 'f'):
-        if exists (enough space): return (current, b, true)
-        else: (not enough space): return (-1, -1, false)
-    */
-    int sectorOffset, byteOffset, alreadyExists;
-    int sectorFree = -1, byteFree = -1;
-    bool freeFound = false;
     char buffer[sectorSize_k];
     TypeCastEntry cast;
 
     // start looking from first non-reserved sector
+    // (or current working directory)
     int current = reservedSectors_k;
     for (int s = 0; s < sectorsForDir_k; ++s) {
         readSector(current, buffer);
@@ -32,22 +21,16 @@ vector<int> FileSystem::getEntryPosition(char *title, char type) {
             for (int k = 0; k < 32; ++k) {
                 cast.str[k] = buffer[b+k];
             }
-            if (!freeFound && strlen(cast.entry.name) == 0) {
-                // used to return the offsets for free entry position
-                sectorFree = current;
-                byteFree = b;
-                freeFound = true;
-            }
-            if (strcmp(cast.entry.name, title) == 0 && (cast.entry.type == type || cast.entry.type == '\0')) {
-                // found position
-                vector<int> offsets = {current, b, 1};
+            if (strlen(cast.entry.name) == 0) {
+                // found free space
+                vector<int> offsets = {current, b};
                 return offsets;
             }
         }
         // next sector to look in
         current = getStatus(current);
     }
-    // no such entry found
-    vector<int> offsets = {sectorFree, byteFree, 0};
+    // no position found
+    vector<int> offsets = {-1, -1};
     return offsets;
 }
