@@ -65,7 +65,7 @@ class FileSystem {
 
  public:
     // constructor
-    FileSystem(string title);
+    FileSystem(string title = "Disk.bin");
 
     enum Status {FREE = 0, BUSY, RESERVED, NOT_FOUND, DIR_ENTRY, DELETED, END};
     const vector<string> statusMsg {

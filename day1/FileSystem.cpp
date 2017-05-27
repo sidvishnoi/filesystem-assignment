@@ -1,7 +1,7 @@
 #include "../filesystem.h"
 
 // constructor
-FileSystem::FileSystem(string title = "Disk.bin")
+FileSystem::FileSystem(string title)
         : diskTitle_k(title) {
 
     // check if disk doesn't exists or is empty
