@@ -16,11 +16,11 @@ Based on this, you need to calculate two offsets for a sector's status: `sectorO
 
 ### Task 2
 
-Go through the each file: `setStatus.cpp` and `getStatus.cpp`.
+Go through the each file: `day2/setStatus.cpp` and `day2/getStatus.cpp`.
 
-Update `setStatus.cpp`. (line 28)
+Update `day2/setStatus.cpp`. (line 28)
 
-Update `getStatus.cpp` similarly.   
+Update `day2/getStatus.cpp` similarly.   
 
 ### Task 3
 
