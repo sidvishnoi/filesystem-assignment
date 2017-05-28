@@ -4,11 +4,11 @@ vector<int> FileSystem::alreadyExists(char *name, char type) {
     /*
      Objective: To check whether a file/dir already exists in current working directory
      Input Parameters:
-     name: dir/file name
-     type: type (d = dir, f = file)
+        name: dir/file name
+        type: type (d = dir, f = file)
      Return value: vector<int>
-     {-1,-1,0} if not found
-     {sector_offset, byte_offset, 1} otherwise
+        {-1,-1,0} if not found
+        {sector_offset, byte_offset, 1} otherwise
      */
     TypeCastEntry cast;
     char buffer[sectorSize_k];

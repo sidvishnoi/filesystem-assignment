@@ -47,6 +47,9 @@ class FileSystem {
     int reservedSectors_k;
     int numberOfSectors_k;
     const int sectorsForDir_k = 2;
+    int currentDir;
+    vector<int> PATH_ID;
+    vector<string> PATH_NAME;
 
     // reserves space for disk, called by constructor
     void createDisk();
